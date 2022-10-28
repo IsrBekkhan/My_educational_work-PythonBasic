@@ -29,6 +29,6 @@ for i_nums in range(len(numbers_list)):
         break
     new_nums = []
 
-print('Исходный список:', numbers_list)
-print('Нужно чисел для палиндрома:', len(answer))
-print('Список этих чисел:', answer)
+print('Последовательность:', numbers_list)
+print('Нужно приписать чисел:', len(answer))
+print('Сами числа:', answer)
