@@ -15,14 +15,11 @@ print('\nПервый список:', numbers_list_1)
 print('Второй список:', numbers_list_2)
 
 numbers_list_1.extend(numbers_list_2)
+new_list = []
 
-for index in range(len(numbers_list_1)):
-    if index > len(numbers_list_1) - 1:
-        break
-    count = numbers_list_1.count(numbers_list_1[index])
-    remove_num = numbers_list_1[index]
-    for _ in range(count - 1):
-        numbers_list_1.remove(remove_num)
+for value in numbers_list_1:
+    if new_list.count(value) == 0:
+        new_list.append(value)
 
-print('\nНовый первый список с уникальными элементами:', numbers_list_1)
+print('\nНовый первый список с уникальными элементами:', new_list)
 
