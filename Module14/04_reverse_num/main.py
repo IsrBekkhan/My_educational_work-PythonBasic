@@ -27,8 +27,8 @@ num_2 = input('Введите второе число: ')
 num_1_rev = revers_int(num_1) + '.' + revers_float(num_1)
 num_2_rev = revers_int(num_2) + '.' + revers_float(num_2)
 
-print('\nПервое число наоборот:', num_1_rev)
-print('Второе число наоборот:', num_2_rev)
+print('\nПервое число наоборот:', float(num_1_rev))
+print('Второе число наоборот:', float(num_2_rev))
 print('Сумма:', float(num_1_rev) + float(num_2_rev))
 
 
