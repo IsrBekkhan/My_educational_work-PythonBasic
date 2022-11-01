@@ -9,5 +9,23 @@ violator_songs = [
     ['Blue Dress', 4.29],
     ['Clean', 5.83]
 ]
+favorite = []
+amount = int(input('Сколько песен выбрать? '))
 
-# TODO здесь писать код
+for count in range(amount):
+    print('Название', count + 1, end = '')
+    name = input('-й песни: ')
+    existance = True
+    for index in range(len(violator_songs)):
+        if name == violator_songs[index][0]:
+            favorite.append(violator_songs[index])
+            existance = False
+            break
+    if existance:
+        print('Такой песни нет в списке.')
+
+duration = 0
+for index in range(len(favorite)):
+    duration += favorite[index][1]
+
+print('\nОбщее время звучания песен:', duration, 'минуты')
