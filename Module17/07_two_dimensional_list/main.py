@@ -1,5 +1,5 @@
 import random
 
-numbers_list = [[random.randint(0, 10) for _ in range(3)] for _ in range(4)]
+numbers_list = [[i_elem + j_elem for j_elem in range(0, 9, 4)] for i_elem in range(1 , 5)]
 
 print(numbers_list)
