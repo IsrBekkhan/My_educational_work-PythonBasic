@@ -1,7 +1,6 @@
 def cezar_decrypt(word):
     alphabet_low = 'abcdefghijklmnopqrstuvwxyz'
     alphabet_up = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    marks = ('/', '(', '.', '"', '+')
     shift = 25
     decrypted_letters = []
 
@@ -10,8 +9,16 @@ def cezar_decrypt(word):
             decrypted_letters.append(alphabet_low[(alphabet_low.index(letter) + shift) % 26])
         elif letter.isupper():
             decrypted_letters.append(alphabet_up[(alphabet_up.index(letter) + shift) % 26])
-        elif letter.startswith(marks):
+        elif letter == '/':
             decrypted_letters.append(letter)
+        elif letter == '(':
+            decrypted_letters.append("'")
+        elif letter == '+':
+            decrypted_letters.append("*")
+        elif letter == '.':
+            decrypted_letters.append('-')
+        elif letter == '"':
+            decrypted_letters.append('!')
 
     return ''.join(decrypted_letters)
 
