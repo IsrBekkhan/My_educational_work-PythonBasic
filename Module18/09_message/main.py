@@ -1,13 +1,15 @@
-message = input('Сообщение: ').split()
-marks = ('.', ',', '!', '?')
-reverse_message = []
+message = input('Сообщение: ')
+temp = ''
+reverse_message = ''
 
-for word in message:
-    if word.endswith(marks):
-        word_list = list(word)
-        remarked_word = ''.join([''.join(word_list[-1:]), ''.join(word_list[:-1])])
-        reverse_message.append(remarked_word[::-1])
+for letter in message:
+
+    if letter.isalpha():
+        temp = letter + temp
+
     else:
-        reverse_message.append(word[::-1])
+        reverse_message += temp
+        reverse_message += letter
+        temp = ''
 
-print('\nНовое сообщение:', ' '.join(reverse_message))
+print('Новое сообщение: ', reverse_message)
