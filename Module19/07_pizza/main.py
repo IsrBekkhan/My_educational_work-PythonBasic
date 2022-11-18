@@ -3,22 +3,20 @@ order_dict = dict()
 
 for count in range(amount):
     order = input(f'{count + 1}-й заказ: ').split()
+    customer = order[0]
+    pizza_name = order[1]
+    count = int(order[2])
 
-    if order[0] in order_dict:
-        order_dict[order[0]].update({})
+    if customer in order_dict:
 
-        if order[1] in order_dict[order[0]]:
-            order_dict[order[0]][order[1]] += int(order[2])
+        if pizza_name in order_dict[customer]:
+            order_dict[customer][pizza_name] += count
         else:
-            order_dict[order[0]][order[1]] = int(order[2])
+            order_dict[customer][pizza_name] = count
 
     else:
-        order_dict[order[0]] = {}
+        order_dict[customer] = {pizza_name: count}
 
-        if order[1] in order_dict[order[0]]:
-            order_dict[order[0]][order[1]] += int(order[2])
-        else:
-            order_dict[order[0]][order[1]] = int(order[2])
 print()
 
 for key in sorted(order_dict):

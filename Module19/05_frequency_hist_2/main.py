@@ -8,17 +8,17 @@ def histogram(text):
             text_dictonary[letter] = 1
     return text_dictonary
 
+
 def hist_inverse(dictonary):
-    keys_set = set(dictonary.values())
     new_dictonary = dict()
 
-    for value in keys_set:
-        new_dictonary[value] = []
+    for key in dictonary:
+        value = dictonary[key]
 
-    for i_key in new_dictonary:
-        for j_key in dictonary:
-            if dictonary[j_key] == i_key:
-                new_dictonary[i_key].append(j_key)
+        if value not in new_dictonary:
+            new_dictonary[value] = [key]
+        else:
+            new_dictonary[value].append(key)
 
     return new_dictonary
 
