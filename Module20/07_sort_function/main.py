@@ -1,6 +1,6 @@
 def tpl_sort(tuple_combination):
     for value in tuple_combination:
-        if str(value).isalpha():
+        if not isinstance(value, int):
             return tuple_combination
     return tuple(sorted(list(tuple_combination)))
 
