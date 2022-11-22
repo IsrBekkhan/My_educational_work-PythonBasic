@@ -8,7 +8,8 @@ data = {
 }
 
 surname = input('Введите фамилию: ').title()
+temp_surname = surname[:-1]
 print()
 for keys, age in data.items():
-    if keys[0].startswith(surname):
+    if keys[0].startswith(temp_surname):
         print(keys[0], keys[1], age)
