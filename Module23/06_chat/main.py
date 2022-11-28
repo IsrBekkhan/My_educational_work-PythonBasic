@@ -1,5 +1,18 @@
+def watch_chat():
+    with open('chat_list.txt', 'r', encoding='utf-8') as view_messages:
+        messages = view_messages.readlines()
+        print(''.join(messages))
+
+
+def send_message():
+    user_message = input('Введите сообщение: ')
+    with open('chat_list.txt', 'a', encoding='utf-8') as add_message:
+        add_message.write('[{name}]: {message}\n'.format(
+            name=user_name,
+            message=user_message))
+
+
 user_name = input('Введите имя: ')
-file_name = 'chat_list.txt'
 
 while True:
     print('\nВыберите действие:\n'
@@ -10,23 +23,16 @@ while True:
     while not choice in ('1', '2'):
         choice = input('Ошибка ввода. Повторите попытку.')
 
-
     try:
         if choice == '1':
-            with open(file_name, 'r', encoding='utf-8') as view_messages:
-                for message in view_messages:
-                    print(message.rstrip())
+            watch_chat()
 
         elif choice == '2':
-            user_message = input('Введите сообщение: ')
-            with open(file_name, 'a', encoding='utf-8') as add_message:
-                add_message.write('[{name}]: {message}\n'.format(
-                    name=user_name,
-                    message=user_message))
+            send_message()
 
     except FileNotFoundError:
-        print('Нет сообщений')
+        print('Нет сообщений.')
     except PermissionError:
-        print('Отказано в доступе к файлу {title}'.format(title=file_name))
+        print('Сервер перегружен. Повторите попытку.')
 
 
