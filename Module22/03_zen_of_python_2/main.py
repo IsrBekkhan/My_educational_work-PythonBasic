@@ -22,7 +22,7 @@ strings = 0
 words = 0
 letters = 0
 
-abs_path = os.path.abspath(os.path.join('..', '02_zen_of_python\zen.txt'))
+abs_path = os.path.abspath(os.path.join('..', '02_zen_of_python', 'zen.txt'))
 input_data = open(abs_path, 'r')
 
 for string in input_data:
