@@ -8,37 +8,37 @@ class Human:
         self.name = name
 
     def eat(self):
-        if House().food > 0:
+        if house.food > 0:
             print('{} кушает.'.format(self.name))
-            self.satiety += 15
-            House().food -= 30
+            self.satiety += 30
+            house.food -= 10
         else:
             print('{} умер.\nПричина смерти: голод.'.format(self.name))
-            House().tenants.remove(self)
+            house.tenants.remove(self)
 
     def work(self):
         print('{} работает.'.format(self.name))
         self.satiety -= 15
-        House().cash += 40
+        house.cash += 60
         if self.satiety <= 0:
             print('{} умер.\nПричина смерти: доработался.'.format(self.name))
-            House().tenants.remove(self)
+            house.tenants.remove(self)
 
     def play(self):
         print('{} играет.'.format(self.name))
-        self.satiety -= 30
+        self.satiety -= 10
         if self.satiety <= 0:
             print('{} умер.\nПричина смерти: доигрался.'.format(self.name))
-            House().tenants.remove(self)
+            house.tenants.remove(self)
 
     def buy_food(self):
-        if House().cash > 0:
+        if house.cash > 0:
             print('{} покупает продукты.'.format(self.name))
-            House().food += 50
-            House().cash -= 50
+            house.food += 100
+            house.cash -= 50
         else:
             print('{} умер.\nПричина смерти: бедность.'.format(self.name))
-            House().tenants.remove(self)
+            house.tenants.remove(self)
 
 
 class House:
@@ -52,9 +52,9 @@ def day_of_life(human_data):
 
     if human_data.satiety < 20:
         human_data.eat()
-    elif House().food < 10:
+    elif house.food < 10:
         human_data.buy_food()
-    elif House().cash < 50:
+    elif house.cash < 50:
         human_data.work()
     elif random_number == 1:
         human_data.work()
@@ -64,11 +64,12 @@ def day_of_life(human_data):
         human_data.play()
 
 
+house = House()
 total_days = 0
 while total_days < 365:
     print('\nДень {}-й:'.format(total_days + 1))
-    if len(House().tenants) > 0:
-        for human in House().tenants:
+    if len(house.tenants) > 0:
+        for human in house.tenants:
             day_of_life(human)
         total_days += 1
     else:
@@ -77,5 +78,5 @@ while total_days < 365:
         break
 else:
     print('\nВ доме прожито 365 дней.\nЖильцы:', end=' ')
-    for human in House().tenants:
+    for human in house.tenants:
         print(human.name, end=' ')

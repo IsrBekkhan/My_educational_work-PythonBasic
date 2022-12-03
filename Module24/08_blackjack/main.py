@@ -38,8 +38,8 @@ class Player:
 def distributor(a_player, amount=1):
 
     for _ in range(amount):
-        rand_card = choice(Deck().cards)
-        Deck().take_from(rand_card)
+        rand_card = choice(card_deck.cards)
+        card_deck.take_from(rand_card)
         a_player.give_to(rand_card)
         a_player.scores += scores_calc(rand_card)
 
@@ -91,6 +91,7 @@ def show_winner(player_1, player_2):
         print('\nВыиграл {}. Количество очков {}'.format(player_2.name, player_2.scores))
 
 
+card_deck = Deck()
 user = Player('Пользователь')
 computer = Player('Компьютер')
 

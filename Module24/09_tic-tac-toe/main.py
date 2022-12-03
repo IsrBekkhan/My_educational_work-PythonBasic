@@ -1,12 +1,7 @@
 class Cell:
 
-    def __init__(self, index):
-        self.index = index
-        self.cell_position = 0
-
-    def is_vacant_cell(self):
-        if self.cell_position == 0:
-            return True
+    def __init__(self, cell_index):
+        self.index = cell_index
 
 
 class Board:
@@ -14,12 +9,14 @@ class Board:
     def __init__(self):
         self.cells = [Cell(index) for index in range(1, 10)]
 
-    def take_cell(self, index, player):
-        self.cells[index-1].cell_position = player.flag
+    def take_cell(self, cell_index, player):
+        the_cell = self.cells[cell_index - 1]
+        the_cell.index = player.flag
 
-    def is_vacant(self, index):
+    def is_busy(self, cell_index):
+        the_cell = self.cells[cell_index - 1]
 
-        if self.cells[index - 1].is_vacant_cell():
+        if isinstance(the_cell.index, str):
             return True
 
 
@@ -31,31 +28,67 @@ class Player:
         self.flag = flag
 
 
-def motion(player):
+def motion(player_object):
     while True:
-        answer = int(input('\n{}, на которую клетку ходите?\n(Введите число от 1 до 9) '.format(player.name)))
+        answer = int(input('\n{}, на которую клетку ходите? Ваш флаг - ({})\n(Введите число от 1 до 9) '.format(
+            player_object.name, player_object.flag
+        )))
 
         if answer < 1 or answer > 9:
             print('Ошибка ввода. Повторите попытку.')
-        elif Board().is_vacant(answer):
-            Board().take_cell(answer, player)
-            player.choices.add(answer)
-            break
-        else:
+        elif board.is_busy(answer):
             print('Ошибка. Выбранная клетка уже занята. Выберите другую.')
-
-    print(player.choices)
-
-
-player_1 = Player('Игрок 1', '1')
-player_2 = Player('Игрок 2', '2')
-
-while True:
-    motion(player_1)
-    motion(player_2)
-    for index, cell in enumerate(Board().cells):
-        print(index + 1, cell.cell_position)
+        else:
+            board.take_cell(answer, player_object)
+            player_object.choices.add(answer)
+            break
 
 
+def print_result(class_object):
+    count = 0
+    for row in range(3):
+        for col in range(count, count + 3):
+            cell = class_object.cells[col]
+            print(cell.index, end='\t')
+        print()
+        count += 3
 
 
+def is_win(player_object):
+    if {1, 2, 3} <= player_object.choices:
+        return True
+    if {4, 5, 6} <= player_object.choices:
+        return True
+    if {7, 8, 9} <= player_object.choices:
+        return True
+
+    if {1, 4, 7} <= player_object.choices:
+        return True
+    if {2, 5, 8} <= player_object.choices:
+        return True
+    if {3, 6, 9} <= player_object.choices:
+        return True
+
+    if {1, 5, 9} <= player_object.choices:
+        return True
+    if {3, 5, 7} <= player_object.choices:
+        return True
+
+
+player_1 = Player('Игрок 1', 'x')
+player_2 = Player('Игрок 2', 'o')
+board = Board()
+
+try:
+    while True:
+        for player in player_1, player_2:
+            print_result(board)
+            motion(player)
+
+            if is_win(player):
+                print_result(board)
+                print('\nВыиграл {}!'.format(player.name))
+                raise ValueError('Игра окончена!')
+
+except ValueError as exc:
+    print(str(exc))
