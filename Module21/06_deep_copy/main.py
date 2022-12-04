@@ -1,3 +1,6 @@
+import json
+
+
 site = {
     'html': {
         'head': {
@@ -45,6 +48,6 @@ for _ in range(amount):
     plagiat_struct[f'Сайт для {site_name}'] = deep_copy(site_name, site)
 
     for key, value in plagiat_struct.items():
-        print(f'{key}:\nsite = ', value)
+        print(f'\n{key}:\nsite = ', json.dumps(value, sort_keys=True, indent=4, ensure_ascii=False))
 
 
