@@ -23,3 +23,6 @@ for string in input_data:
     output_data.write(encrypted_string)
     output_data.close()
     step += 1
+
+input_data.close()
+print("Программа завершена. Результат в файле 'cipher_text.txt'.")
