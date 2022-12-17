@@ -1,4 +1,4 @@
-from husband import *
+from husband import Husband
 
 
 class Child(Husband):

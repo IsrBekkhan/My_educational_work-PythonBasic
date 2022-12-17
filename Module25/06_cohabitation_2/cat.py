@@ -1,4 +1,4 @@
-from human import *
+from human import Human
 
 
 class Cat(Human):

@@ -1,8 +1,8 @@
-from husband import *
-from wife import *
-from cat import *
-from house import *
-from child import *
+from husband import Husband
+from wife import Wife
+from cat import Cat
+from house import House
+from child import Child
 
 
 def day_in_house(house):
