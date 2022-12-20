@@ -9,7 +9,7 @@ class Square:
     def __iter__(self) -> Iterable[int]:
         return self
 
-    def __next__(self) -> (StopIteration, int):
+    def __next__(self) -> (int, None):
         self.__count += 1
 
         if self.__count > self.__finish:

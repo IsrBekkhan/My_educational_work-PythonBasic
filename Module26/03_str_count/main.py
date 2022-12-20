@@ -9,12 +9,12 @@ def gen_py_files(path: str = path.abspath(sep)) -> Iterable[tuple]:
     for elem in result:
         files_list = elem[2]
 
-        for file in files_list:
+        for file_object in files_list:
 
-            if file.endswith('.py'):
+            if file_object.endswith('.py'):
 
                 try:
-                    with open(file, 'r', encoding='utf-8') as python_file:
+                    with open(file_object, 'r', encoding='utf-8') as python_file:
 
                         for string in python_file:
 
