@@ -3,11 +3,8 @@ from math import sqrt
 
 
 class Circle:
-    x = 0
-    y = 0
-    r = 1
 
-    def __init__(self, x, y, r):
+    def __init__(self, x=0, y=0, r=1):
         self.x = x
         self.y = y
         self.r = r

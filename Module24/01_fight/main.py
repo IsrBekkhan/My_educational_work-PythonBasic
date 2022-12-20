@@ -2,10 +2,10 @@ from random import choice
 
 
 class Unit:
-    health = 100
 
-    def __init__(self, name):
+    def __init__(self, name, health=100):
         self.name = name
+        self.health = health
 
     def kick(self, enemy):
         enemy.health -= 20
