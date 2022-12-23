@@ -3,16 +3,11 @@ from functools import wraps
 
 
 def callback(user_data: str) -> Callable:
-    """
-    Декоратор, добавляющий экземпляр фукции в словарь по ключу пользователя.
-    :param user_data:
-    :return:
-    """
     def checker(func: Callable) -> Callable:
 
         @wraps(func)
-        def wrapped_func(*args, **kwargs) -> None:
-            app[user_data] = func
+        def wrapped_func(*args, **kwargs) -> str:
+            return func()
         return wrapped_func
     return checker
 
@@ -26,8 +21,7 @@ def example() -> str:
     return 'OK'
 
 
-app = dict()
-example()
+app = {'//': example}
 
 route = app.get('//')
 if route:
