@@ -5,8 +5,6 @@ from functools import wraps
 def callback(user_data: str) -> Callable:
     """
     Декоратор, добавляющий экземпляр фукции в словарь по ключу пользователя.
-    :param user_data:
-    :return:
     """
     def checker(func: Callable) -> Callable:
 
