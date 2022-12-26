@@ -1,7 +1,11 @@
+from functools import wraps
+
+
 def singleton(cls):
     """
     Декоратор Синглтон, гарантирующий, что у класса только один экземпляр.
     """
+    @wraps(cls)
     def wrapped(*args, **kwargs):
         if not wrapped.instance:
             wrapped.instance = cls(*args, **kwargs)
