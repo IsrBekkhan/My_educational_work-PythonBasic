@@ -1,5 +1,6 @@
 from typing import Callable
 from functools import wraps
+app = dict()
 
 
 def callback(user_data: str) -> Callable:
@@ -7,10 +8,11 @@ def callback(user_data: str) -> Callable:
     Декоратор, добавляющий экземпляр фукции в словарь по ключу пользователя.
     """
     def checker(func: Callable) -> Callable:
+        app[user_data] = func
 
         @wraps(func)
         def wrapped_func(*args, **kwargs) -> None:
-            app[user_data] = func
+            return func()
         return wrapped_func
     return checker
 
@@ -23,9 +25,6 @@ def example() -> str:
     print('Пример функции, которая возвращает ответ сервера')
     return 'OK'
 
-
-app = dict()
-example()
 
 route = app.get('//')
 if route:
