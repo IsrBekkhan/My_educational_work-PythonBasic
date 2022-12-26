@@ -1,3 +1,6 @@
+from typing import TextIO
+
+
 class File:
     """
     Контекст-менеджер, для работы с файлами.
@@ -10,7 +13,7 @@ class File:
         self.file_name = file_name
         self.file_object = None
 
-    def __enter__(self) -> 'file_object':
+    def __enter__(self) -> TextIO:
         """
         Магический метод, для подготовки объекта файлового типа.
 
